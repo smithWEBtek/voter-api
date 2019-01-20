@@ -11,7 +11,7 @@ def load_voters
 			postal_code: row["postal_code"]
 		)
 		voter.save
-		print '.'
+		print '*'
 	end
 end
  

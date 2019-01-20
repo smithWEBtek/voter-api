@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 2019_01_19_234333) do
     t.string "city"
     t.string "state"
     t.string "postal_code"
-    t.string "lat"
-    t.string "lng"
     t.string "geocode"
     t.string "address_string"
     t.datetime "created_at", null: false

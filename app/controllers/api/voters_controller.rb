@@ -12,6 +12,7 @@ class Api::VotersController < ApplicationController
 	
 		def create
 			@voter = Voter.new(voter_params)
+			@voter.address_string
 			if @voter.save
 				render json: @voter
 			else
@@ -48,7 +49,7 @@ class Api::VotersController < ApplicationController
 			end
 	
 			def voter_params
-				params.require(:voter).permit(:vote_preference, :street_number, :street_name, :city, :state, :postal_code, :address_string, :lat, :lng, :geocode)
+				params.require(:voter).permit(:vote_preference, :street_number, :street_name, :city, :state, :postal_code, :address_string, :geocode)
 			end
 	end
 	
