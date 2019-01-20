@@ -3,7 +3,7 @@ def load_voters
 	csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 	csv.each do |row|
 		voter = Voter.new(
-			vote_preference: row["vote_preference"],
+			vote_preference: row["vote_preference"].downcase,
 			street_number: row["street_number"],
 			street_name: row["street_name"],
 			city: row["city"],

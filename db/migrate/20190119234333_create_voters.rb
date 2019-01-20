@@ -7,8 +7,9 @@ class CreateVoters < ActiveRecord::Migration[5.2]
 			t.string :city
 			t.string :state
 			t.string :postal_code
-			t.float :lat
-			t.float :lng
+			t.string :lat
+			t.string :lng
+			t.string :geocode
 			t.string :address_string
  
       t.timestamps

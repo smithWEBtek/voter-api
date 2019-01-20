@@ -33,7 +33,7 @@ class Api::VotersController < ApplicationController
 		end
 	
 		def markers
-			@voters = Voter.all.select{|v| v.lat != "0"}
+			@voters = Voter.all.select{|v| !v.geocode.nil? }
 			if @voters.count == 0
 				render json: {message: "no voter locations yet"}
 			else
@@ -48,7 +48,7 @@ class Api::VotersController < ApplicationController
 			end
 	
 			def voter_params
-				params.require(:voter).permit(:vote_preference, :street_number, :street_name, :city, :state, :postal_code, :address_string, :lat, :lng)
+				params.require(:voter).permit(:vote_preference, :street_number, :street_name, :city, :state, :postal_code, :address_string, :lat, :lng, :geocode)
 			end
 	end
 	
