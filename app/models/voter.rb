@@ -4,6 +4,10 @@ class Voter < ApplicationRecord
 	scope :oppose, -> { where(vote_preference: 'oppose') }
 	scope :undecided, -> { where(vote_preference: 'undecided') }
  
+	def timestamp
+		self.created_at.strftime("%m/%d/%Y %H:%M%p")
+	end
+
 	def self.stats
 		@voters = {
 			support: self.support, 
