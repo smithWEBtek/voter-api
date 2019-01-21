@@ -1,7 +1,7 @@
 class CreateVoters < ActiveRecord::Migration[5.2]
   def change
     create_table :voters do |t|
-			t.string :vote_preference, default: "Undecided"
+			t.string :vote_preference
 			t.string :street_number
 			t.string :street_name
 			t.string :city

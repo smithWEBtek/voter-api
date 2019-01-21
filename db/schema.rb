@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_01_19_234333) do
   enable_extension "plpgsql"
 
   create_table "voters", force: :cascade do |t|
-    t.string "vote_preference", default: "Undecided"
+    t.string "vote_preference"
     t.string "street_number"
     t.string "street_name"
     t.string "city"
