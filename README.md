@@ -11,7 +11,7 @@ Green = Support
 A live reloading D3 bar chart represents the current counts of the 3 voter preference groups.
 
 ## Configuration and Setup
-* Ruby version: 2.4.4
+* Ruby version: 2.7.1
 
 * System dependencies: Gemfile contains required dependencies. 
 
