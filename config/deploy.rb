@@ -32,3 +32,17 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
+
+namespace :deploy do
+    desc 'Remove old releases with sudo'
+    task :cleanup_with_sudo do
+      on roles(:all) do
+        within releases_path do
+          execute :sudo, :rm, '-rf', releases[0..-6].join(' ')
+        end
+      end
+    end
+  end
+
+  after 'deploy:finishing', 'deploy:cleanup_with_sudo'
+  
