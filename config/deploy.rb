@@ -33,16 +33,46 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
+# namespace :deploy do
+#     desc 'Remove old releases with sudo'
+#     task :cleanup_with_sudo do
+#       on roles(:all) do
+#         within releases_path do
+#           execute :sudo, :rm, '-rf', releases[0..-6].join(' ')
+#         end
+#       end
+#     end
+#   end
+
+#   after 'deploy:finishing', 'deploy:cleanup_with_sudo'
+
 namespace :deploy do
     desc 'Remove old releases with sudo'
     task :cleanup_with_sudo do
       on roles(:all) do
         within releases_path do
-          execute :sudo, :rm, '-rf', releases[0..-6].join(' ')
+          # Fetch the list of releases
+          releases = capture(:ls, '-xtr', releases_path).split
+          if releases.count >= fetch(:keep_releases)
+            # Remove the oldest releases, keeping the most recent ones
+            directories_to_remove = (releases - releases.last(fetch(:keep_releases)))
+            if directories_to_remove.any?
+              execute :sudo, :rm, '-rf', directories_to_remove.map { |release| File.join(releases_path, release) }.join(' ')
+            end
+          end
         end
       end
     end
   end
-
+  
   after 'deploy:finishing', 'deploy:cleanup_with_sudo'
   
+
+
+
+
+
+
+
+
+
