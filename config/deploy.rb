@@ -66,13 +66,3 @@ namespace :deploy do
   end
   
   after 'deploy:finishing', 'deploy:cleanup_with_sudo'
-  
-
-
-
-
-
-
-
-
-
